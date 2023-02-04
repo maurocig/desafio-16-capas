@@ -1,0 +1,35 @@
+{{>nav}}
+
+<main class="m-3">
+	<h1>Carrito</h1>
+	<div class="rounded px-3 py-2 bg-white">
+		<table class="bg-white w-full">
+			{{#each cart.items}}
+			<tr class="bg-white p-4">
+				<td>
+					<strong>{{this.quantity}}</strong>
+				</td>
+				<td>
+					<strong>{{this.productId.title}}</strong>
+				</td>
+				<td>
+					<strong>${{this.productId.price}}</strong>
+				</td>
+				<td>
+					<form action="/carts/{{../cart._id}}/{{this._id}}?_method=DELETE" method="POST">
+						<button type="submit">
+							<i class="material-icons text-red-500">delete</i>
+						</button>
+					</form>
+				</td>
+			</tr>
+			{{/each}}
+		</table>
+	</div>
+
+	<form action="/checkout" method="post">
+		<button type="submit" class="bg-green-600 px-3 py-2 rounded my-3 text-white hover:bg-green-500 ">
+			Finalizar compra
+		</button>
+	</form>
+</main>
